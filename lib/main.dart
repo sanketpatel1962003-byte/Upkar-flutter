@@ -4,20 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:upkar/screens/login_screen.dart';
 import 'package:upkar/screens/home_screen.dart';
-import 'package:upkar/screens/profile_screen.dart';
-import 'package:upkar/screens/settings_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super . key}) ;
 
   @override
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -39,8 +38,6 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     LoginScreen(),
     HomeScreen(),
-    ProfileScreen(),
-    SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -68,14 +65,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
+
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
