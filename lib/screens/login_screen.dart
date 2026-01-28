@@ -21,8 +21,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[100],
+
+
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('UPKAR'),
+        automaticallyImplyLeading: false,
+
         centerTitle: true,
         backgroundColor: Colors.black,
         foregroundColor: Colors.blue,
@@ -41,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 fillColor: Color(0xfff3f3f4),
                 filled: true,
                 border: OutlineInputBorder(),
+
+
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -54,8 +60,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 fillColor: Color(0xfff3f3f4),
                 filled: true,
                 border: OutlineInputBorder(),
+                suffixIcon: Icon(Icons.visibility_off),
+
               ),
               obscureText: true,
+              keyboardType: TextInputType.visiblePassword,
+
             ),
             const SizedBox(height: 32.0),
             ElevatedButton(
@@ -63,8 +73,36 @@ class _LoginScreenState extends State<LoginScreen> {
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.black,
+
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                textStyle: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+
+
               ),
               child: const Text('Login'),
+              ),
+            const SizedBox(height: 16.0),
+            const Text(
+              'Forgot Password?',
+
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+              ),
+
+
+
+
+
+
+
             ),
           ],
         ),

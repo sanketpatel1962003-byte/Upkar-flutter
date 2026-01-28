@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
+import 'cart_screen.dart';
 import 'login_screen.dart';
 import 'product_detail_screen.dart';
+import '../product.dart';
 
-// Model for a Product
-class Product {
-  final String name;
-  final String price;
-  final String imageUrl;
-
-  Product({required this.name, required this.price, required this.imageUrl});
-}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,11 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Sample product data
   final List<Product> _allProducts = [
-    Product(name: 'Upkar Deluxe E-Rickshaw', price: '₹1,55,000', imageUrl: 'assets/delux.png'),
-    Product(name: 'Upkar Cargo Loader', price: '₹1,75,000', imageUrl: 'assets/cargo_loader.png'),
-    Product(name: 'Upkar Cargo_loader', price: '₹1,62,000', imageUrl: 'assets/cargo loader.png'),
-    Product(name: 'Upkar Eco-Friendly', price: '₹1,48,000', imageUrl: 'assets/eco_friendly.png'),
-    Product(name: 'Upkar City Rider', price: '₹1,50,000', imageUrl: 'assets/city_rider.png'),
+    Product(name: 'Upkar Deluxe E-Rickshaw', price: '₹1,55,000', imageUrl: 'assets/delux.png', description: 'Premium electric rickshaw with comfort and power'),
+    Product(name: 'Upkar Cargo_Loader', price: '₹1,75,000', imageUrl: 'assets/cargo_loader.png', description: 'Heavy duty cargo electric loader'),
+    Product(name: 'Upkar Cargo Loader', price: '₹1,62,000', imageUrl: 'assets/cargo loader.png', description: 'Best for city passenger transport'),
+    Product(name: 'Upkar Eco-Friendly', price: '₹1,48,000', imageUrl: 'assets/eco_friendly.png', description: 'An eco-friendly option for a greener tomorrow'),
+    Product(name: 'Upkar City Rider', price: '₹1,50,000', imageUrl: 'assets/city_rider.png', description: 'Navigate the city with ease and style'),
   ];
 
   List<Product> _filteredProducts = [];
@@ -106,6 +100,15 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.search),
             onPressed: _startSearch,
           ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartScreen()),
+              );
+            },
+          ),
         ],
       );
     }
@@ -121,8 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Image.asset(
               'assets/img_1.png',
-              width: 400,
-              height: 180,
+              width: 500,
+              height: 160,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => const Icon(Icons.image, size: 60), // Placeholder on error
             ),
@@ -144,7 +147,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     title: Text(product.name, style: const TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(product.price, style: TextStyle(color: Colors.grey[800])),
-                    trailing: const Icon(Icons.arrow_forward_ios),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: product.isFavorite ? Colors.red : Colors.grey,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              product.isFavorite = !product.isFavorite;
+                            });
+                          },
+                        ),
+                        const Icon(Icons.arrow_forward_ios),
+                      ],
+                    ),
                     onTap: () {
                       Navigator.push(
                         context,
