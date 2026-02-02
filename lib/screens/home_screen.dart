@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'cart_screen.dart';
 import 'login_screen.dart';
@@ -7,6 +8,12 @@ import '../product.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+
+
+
+
+
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

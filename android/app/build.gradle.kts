@@ -18,6 +18,7 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
+
     }
 
     defaultConfig {
@@ -42,4 +43,10 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies{
+    implementation (platform("com.google.firebase:firebase-bom:34.8.0"))
+    implementation ("com.google.firebase:firebase-analytics")
+
 }
